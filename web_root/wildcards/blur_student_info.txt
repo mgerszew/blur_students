@@ -1,0 +1,25 @@
+<script>
+	$j( document ).ready(function() {
+			$j("#currentscope").prepend('<span id="blurStuSpan">Blur Students Data: <input type="checkbox" id="blurStuChbx" name="blurStuChbx" value="blurStu"></span>');
+			$j("#blurStuSpan").css('padding-right', '20px');
+		
+		$j('#blurStuChbx').change(function() {
+			if (this.checked) {
+					$j('a[href*="/admin/students/home.html"]').css("filter", "blur(4px)");
+					$j('[name*="UF-"]').css("filter", "blur(4px)");
+					$j('[name*="EF-"]').css("filter", "blur(4px)");
+					$j('[name*="student"]').css("filter", "blur(4px)");
+					$j('#student_detail_header').css("filter", "blur(4px)");
+					$j('img[src*="/admin/stpthumb/"]').css("filter", "blur(6px)");
+			}
+			else {
+					$j('a[href*="/admin/students/home.html"]').css("filter", "blur(0px)");
+					$j('[name*="UF-"]').css("filter", "blur(0px)");
+					$j('[name*="EF-"]').css("filter", "blur(0px)");
+					$j('[name*="student"]').css("filter", "blur(0px)");
+					$j('#student_detail_header').css("filter", "blur(0px)");
+					$j('img[src*="/admin/stpthumb/"]').css("filter", "blur(0px)");
+			}
+		});
+	});
+</script>
