@@ -5,6 +5,8 @@
    $j( document ).ready(function() {
 		$j("#currentscope").prepend('<span id="blurStuSpan">Blur Students Data: <input type="checkbox" id="blurStuChbx" name="blurStuChbx" value="blurStu"></span>');
 		$j("#blurStuSpan").css('padding-right', '20px');
+		// help to center, some slide-in drawers will cover the checkbox
+		$j("#blurStuSpan").css('margin-right', 'auto');		
 		
 		//looks to see if checked previously
 		if(localStorage.getItem('blur.checked')){
@@ -27,7 +29,11 @@
 	//now show the body
 	$j('body').css('display','inline');
 	});
-
+    
+	// use a pref to allow additional jQuery selectors to be defined, useful for 3rd party plugins that have their own fields that should be blurred
+    let additionalSelectorsStr = "~[displaypref:blurstudentinfoaddblur;Js]";
+    let additionalSelectors = additionalSelectorsStr.split(";")
+    
 	function setBlur(shouldBlur) {
 		if (shouldBlur) {
 			$j('a[href*="/admin/students/home.html"]').css("filter", "blur(4px)");
@@ -36,6 +42,9 @@
 			$j('[name*="student"]').css("filter", "blur(4px)");
 			$j('#student_detail_header').css("filter", "blur(4px)");
 			$j('img[src*="/admin/stpthumb/"]').css("filter", "blur(6px)");
+			$j.each(additionalSelectors, function(index, value){
+			    $j(value).css("filter", "blur(4px)");
+			});
 			document.title = "student name";
 		}
 		else {
@@ -46,6 +55,9 @@
 			$j('[name*="student"]').css("filter", "blur(0px)");
 			$j('#student_detail_header').css("filter", "blur(0px)");
 			$j('img[src*="/admin/stpthumb/"]').css("filter", "blur(0px)");
+			$j.each(additionalSelectors, function(index, value){
+			    $j(value).css("filter", "blur(0px)");
+			});
 		}
 	}
 </script>
