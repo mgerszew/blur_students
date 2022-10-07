@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blur Student Info Configuration</title>
+<!-- required scripts -->
+	~[wc:commonscripts] 
+<!-- Required style sheets: screen.css, and print.css --> 
+	<link href="/images/css/screen.css" rel="stylesheet" media="screen">
+	<link href="/images/css/print.css" rel="stylesheet" media="print">
+</head> 
+<body> 
+	~[wc:admin_header_css] 
+	<!-- breadcrumb start --><a href="/admin/home.html" target="_top">~[text:psx.html.admin_tech.home.start_page]</a> &gt; <a href="/admin/tech/">~[text:psx.html.admin_tech.home.system_administrator1]</a> &gt; Blur Student Info Configuration<!-- breadcrumb end -->
+<!-- start of main menu and content --> 
+	~[wc:admin_navigation_css] 
+<!-- Start of Page --> 
+<!-- start of content area --> 
+    <h1>Blur Student Info Settings</h1>
+    ~[if#formSubmitted.~[gpv:formSubmitted]=True]<div id="changes-saved-message" class="feedback-confirm">Changes saved</div>[/if#formSubmitted]
+
+    <form action="/~[self.page]"  onsubmit="return true;" id="portalForm" method="POST" name="form1">
+    <input type="hidden" name="formSubmitted" value="true"/>
+    
+    <!-- start of content and bounding box -->
+    <div class="box-round">
+        <div>
+    <span>
+    Enter a semicolon separated list of jQuery selectors, use single quotes for any strings to be matched.  e.g.:<br>
+    #formIndexesDiv input[name='1'];#formIndexesDiv input[name='2']
+    </span></div>
+    ~[if.district.office]
+        <table class="linkDescList">
+            <tbody>
+                <tr class="oddrow">
+                    <td>Blur additional fields jQuery</td>
+                    <td><textarea name="[pref]blurstudentinfoaddblur" cols=70 rows=6 value=""></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="button-row"><input type="hidden" name="ac" value="prim"><input type="hidden" name="ac" value="initschools">~[submitbutton]</div>
+    [else]
+    You must be at the District Office to view this page.
+    [/if.district.office]
+
+    </form>
+	</div> 
+<!-- end of content area --> 
+	~[wc:admin_footer_css] 
+</body> 
+</html>

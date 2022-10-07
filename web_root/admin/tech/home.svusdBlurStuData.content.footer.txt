@@ -1,0 +1,24 @@
+~[if.~(f.table_info;table=pages;fn=count;dothisfor=all;*path=blurstudentinfo/home.html)=0]
+~(f.table_sel;table=pages;fn=create_rec)
+~(f.field_set;name=[pages]path;value=blurstudentinfo/home.html)
+~(f.field_set;name=[pages]security;value=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+~(f.table_sel;table=pages;fn=save_rec)
+~(f.table_sel;table=pages;fn=unload_rec)
+[/if]
+
+~[if.security.pagemod=/admin/blurstudentinfo/home.html]
+	<table style="display:none;">
+		<tr id="svusdBlurStuInfo">
+			<td><a href="/admin/blurstudentinfo/home.html">Blur Student Info</a></td>
+			<td>Configure additional jQuery to identify fields to blur</td>
+		</tr>
+	</table>
+
+	<script>
+		$j(document).ready(function() {
+			var table = $j("a[href='/admin/tech/dde/']").closest("table");		
+			table.append( $j("#svusdBlurStuInfo") );			
+			table.find("tr").sort(function(a,b){ return $j(a).find("td:first").text().localeCompare( $j(b).find("td:first").text() ) }).appendTo(table);
+		});
+	</script>
+[/if]
